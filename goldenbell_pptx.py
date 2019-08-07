@@ -1,12 +1,17 @@
 from pptx import Presentation
 import os
+import sys
 
 # question = [1,2,3,4,5]
 # answer = [11,12,13,14,15]
 # q_a_li = [[i, j] for i, j in zip(question, answer)]
 
 def making_PPT(q_a_li):
-    prs = Presentation('골든벨_템플릿.pptx')
+    try:
+        current_path = sys._MEIPASS
+    except AttributeError:
+        current_path = '.'
+    prs = Presentation(os.path.join(current_path, '골든벨_템플릿.pptx'))
     title_slide_layout = prs.slide_layouts[0]
     for q_a in q_a_li:
         q, a = q_a
